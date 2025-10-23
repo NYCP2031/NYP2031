@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Palma 2031 Gallery</title>
+
+  <!-- ===== Google Font ===== -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- ===== CSS ===== -->
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: #fff;
+      color: #222;
+      text-align: center;
+    }
+
+    header {
+      padding: 25px;
+      position: relative;
+    }
+
+    h1 {
+      font-size: 1.8em;
+      font-weight: 600;
+      margin: 0;
+      letter-spacing: 0.5px;
+    }
+
+    /* ===== Language dropdown ===== */
+    .lang-select {
+      position: absolute;
+      top: 20px;
+      right: 25px;
+    }
+
+    .lang-select select {
+      padding: 8px 14px;
+      border: 1.5px solid #222;
+      background: #fff;
+      cursor: pointer;
+      border-radius: 6px;
+      font-size: 0.95em;
+      font-weight: 500;
+      transition: all 0.2s ease;
+    }
+
+    .lang-select select:hover {
+      background: #f3f3f3;
+    }
+
+    /* ===== Description ===== */
+    .description {
+      max-width: 750px;
+      margin: 15px auto 40px auto;
+      font-size: 1.15em;
+      line-height: 1.7em;
+      font-weight: 400;
+      padding: 0 15px;
+    }
+
+    /* ===== Masonry Gallery ===== */
+    .gallery {
+      column-count: 3;
+      column-gap: 15px;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 20px 40px;
+    }
+
+    @media (max-width: 900px) {
+      .gallery { column-count: 2; }
+    }
+
+    @media (max-width: 600px) {
+      .gallery { column-count: 1; }
+    }
+
+    .gallery img {
+      width: 100%;
+      margin-bottom: 15px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      display: block;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.03);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+
+    /* ===== Lightbox ===== */
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.9);
+      justify-content: center;
+      align-items: center;
+      z-index: 10;
+    }
+
+    .lightbox img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 8px;
+    }
+
+    .close, .prev, .next {
+      position: absolute;
+      color: #fff;
+      font-size: 2em;
+      cursor: pointer;
+      user-select: none;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .close {
+      top: 25px;
+      right: 35px;
+      font-size: 2.5em;
+      transform: none;
+    }
+
+    .prev { left: 5%; }
+    .next { right: 5%; }
+  </style>
+</head>
+
+<body>
+  <!-- ===== HEADER ===== -->
+  <header>
+    <div class="lang-select">
+      <select id="lang-select">
+        <option value="ca">CA</option>
+        <option value="en" selected>EN</option>
+        <option value="es">ES</option>
+      </select>
+    </div>
+    <h1 id="title">New York City For Palma 2031</h1>
+  </header>
+
+  <!-- ===== DESCRIPTION ===== -->
+  <div class="description" id="description">
+    We’ve had the chance to experience Palma and its incredible spirit firsthand. The energy, creativity, and warmth of the people here truly stand out. As New Yorkers, we’re proud to support the Palma 2031 efforts and everything this city is building toward — a future full of culture, connection, and possibility.
+  </div>
+
+  <!-- ===== GALLERY ===== -->
+  <div class="gallery" id="gallery">
+    <img src="images/image1.jpg" alt="Placeholder 1">
+    <img src="images/image2.jpg" alt="Placeholder 2">
+    <img src="images/image3.jpg" alt="Placeholder 3">
+    <img src="images/image4.jpg" alt="Placeholder 4">
+    <img src="images/image5.jpg" alt="Placeholder 5">
+    <img src="images/image6.jpg" alt="Placeholder 6">
+    <img src="images/image7.jpg" alt="Placeholder 7">
+    <img src="images/image8.jpg" alt="Placeholder 8">
+    <img src="images/image9.jpg" alt="Placeholder 9">
+  </div>
+
+  <!-- ===== LIGHTBOX VIEWER ===== -->
+  <div class="lightbox" id="lightbox">
+    <span class="close" id="close">&times;</span>
+    <span class="prev" id="prev">&#10094;</span>
+    <img id="lightbox-img" src="">
+    <span class="next" id="next">&#10095;</span>
+  </div>
+
+  <!-- ===== JS ===== -->
+  <script>
+    // === Language select ===
+    const langSelect = document.getElementById('lang-select');
+    const title = document.getElementById('title');
+    const description = document.getElementById('description');
+
+    const texts = {
+      ca: {
+        title: 'Nova York dona suport a Palma 2031',
+        desc: 'Hem tingut l’oportunitat de viure de primera mà l’esperit increïble de Palma. L’energia, la creativitat i la calidesa de la gent d’aquí destaquen de veritat. Com a novaiorquesos, estam orgullosos de donar suport a Palma 2031 i a tot el que aquesta ciutat està construint: un futur ple de cultura, connexió i possibilitats.'
+      },
+      en: {
+        title: 'New York City For Palma 2031',
+        desc: 'We’ve had the chance to experience Palma and its incredible spirit firsthand. The energy, creativity, and warmth of the people here truly stand out. As New Yorkers, we’re proud to support the Palma 2031 efforts and everything this city is building toward — a future full of culture, connection, and possibility.'
+      },
+      es: {
+        title: 'Nueva York apoya Palma 2031',
+        desc: 'Hemos tenido la oportunidad de experimentar Palma y su increíble espíritu de primera mano. La energía, la creatividad y la calidez de su gente destacan realmente. Como neoyorquinos, estamos orgullosos de apoyar los esfuerzos de Palma 2031 y todo lo que esta ciudad está construyendo: un futuro lleno de cultura, conexión y posibilidades.'
+      }
+    };
+
+    langSelect.addEventListener('change', (e) => {
+      const lang = e.target.value;
+      title.textContent = texts[lang].title;
+      description.textContent = texts[lang].desc;
+    });
+
+    // === Lightbox / gallery ===
+    const galleryImages = document.querySelectorAll('.gallery img');
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const closeBtn = document.getElementById('close');
+    const prevBtn = document.getElementById('prev');
+    const nextBtn = document.getElementById('next');
+
+    let currentIndex = 0;
+
+    function showLightbox(index) {
+      currentIndex = index;
+      lightboxImg.src = galleryImages[index].src;
+      lightbox.style.display = 'flex';
+    }
+
+    function showNext(step) {
+      currentIndex = (currentIndex + step + galleryImages.length) % galleryImages.length;
+      lightboxImg.src = galleryImages[currentIndex].src;
+    }
+
+    galleryImages.forEach((img, index) => {
+      img.addEventListener('click', () => showLightbox(index));
+    });
+
+    closeBtn.addEventListener('click', () => lightbox.style.display = 'none');
+    prevBtn.addEventListener('click', () => showNext(-1));
+    nextBtn.addEventListener('click', () => showNext(1));
+
+    window.addEventListener('keydown', (e) => {
+      if (lightbox.style.display === 'flex') {
+        if (e.key === 'ArrowLeft') showNext(-1);
+        if (e.key === 'ArrowRight') showNext(1);
+        if (e.key === 'Escape') lightbox.style.display = 'none';
+      }
+    });
+  </script>
+</body>
+</html>
