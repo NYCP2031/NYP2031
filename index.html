@@ -24,7 +24,7 @@
     }
 
     h1 {
-      font-size: 1.8em;
+      font-size: 1.9em;
       font-weight: 600;
       margin: 0;
       letter-spacing: 0.5px;
@@ -62,26 +62,27 @@
       padding: 0 15px;
     }
 
-    /* ===== Masonry Gallery ===== */
+    /* ===== Masonry Gallery (Always 3 columns) ===== */
     .gallery {
       column-count: 3;
-      column-gap: 15px;
+      column-gap: 10px;
       max-width: 1000px;
       margin: 0 auto;
-      padding: 0 20px 40px;
+      padding: 0 10px 40px;
     }
 
-    @media (max-width: 900px) {
-      .gallery { column-count: 2; }
-    }
-
+    /* Keep 3 columns even on mobile */
     @media (max-width: 600px) {
-      .gallery { column-count: 1; }
+      .gallery {
+        column-count: 3;
+        column-gap: 6px;
+        padding: 0 8px 30px;
+      }
     }
 
     .gallery img {
       width: 100%;
-      margin-bottom: 15px;
+      margin-bottom: 10px;
       border-radius: 8px;
       cursor: pointer;
       transition: transform 0.25s ease, box-shadow 0.25s ease;
