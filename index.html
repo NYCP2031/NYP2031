@@ -62,7 +62,27 @@
       padding: 0 15px;
     }
 
-    /* ===== Masonry Gallery (Always 3 columns) ===== */
+    /* ===== Responsive Video ===== */
+    #bg-video {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 0 auto 40px auto;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      background: #000;
+    }
+
+    @media (max-width: 600px) {
+      #bg-video {
+        width: 100vw;
+        height: auto;
+        border-radius: 0;
+        margin-bottom: 20px;
+      }
+    }
+
+    /* ===== Masonry Gallery (Commented Out) ===== */
     /*
     .gallery {
       column-count: 3;
@@ -152,8 +172,9 @@
   </div>
 
   <!-- ===== VIDEO SECTION ===== -->
-  <video controls loop id="bg-video">
+  <video id="bg-video" autoplay muted loop playsinline controls>
     <source src="images/palma2031vid.mp4" type="video/mp4">
+    <source src="images/palma2031vid.mov" type="video/quicktime">
     Your browser does not support the video tag.
   </video>
 
@@ -163,27 +184,7 @@
     <img src="images/image1.jpg" alt="Placeholder 1">
     <img src="images/image2.jpg" alt="Placeholder 2">
     <img src="images/image3.jpg" alt="Placeholder 3">
-    <img src="images/image4.jpg" alt="Placeholder 4">
-    <img src="images/image5.jpg" alt="Placeholder 5">
-    <img src="images/image6.jpg" alt="Placeholder 6">
-    <img src="images/image7.jpg" alt="Placeholder 7">
-    <img src="images/image8.jpg" alt="Placeholder 8">
-    <img src="images/image9.jpg" alt="Placeholder 9">
-    <img src="images/image10.jpg" alt="Placeholder 10">
-    <img src="images/image11.jpg" alt="Placeholder 11">
-    <img src="images/image12.jpg" alt="Placeholder 12">
-    <img src="images/image13.jpg" alt="Placeholder 13">
-    <img src="images/image14.jpg" alt="Placeholder 14">
-    <img src="images/image15.jpg" alt="Placeholder 15">
-    <img src="images/image16.jpg" alt="Placeholder 16">
-    <img src="images/image17.jpg" alt="Placeholder 17">
-    <img src="images/image18.jpg" alt="Placeholder 18">
-    <img src="images/image19.jpg" alt="Placeholder 19">
-    <img src="images/image20.jpg" alt="Placeholder 20">
-    <img src="images/image21.jpg" alt="Placeholder 21">
-    <img src="images/image22.jpg" alt="Placeholder 22">
-    <img src="images/image23.jpg" alt="Placeholder 23">
-    <img src="images/image24.jpg" alt="Placeholder 24">
+    ...
   </div>
   -->
 
@@ -224,45 +225,6 @@
       title.textContent = texts[lang].title;
       description.textContent = texts[lang].desc;
     });
-
-    /*
-    // === Lightbox / gallery ===
-    const galleryImages = document.querySelectorAll('.gallery img');
-    const lightbox = document.getElementById('lightbox');
-    const lightboxImg = document.getElementById('lightbox-img');
-    const closeBtn = document.getElementById('close');
-    const prevBtn = document.getElementById('prev');
-    const nextBtn = document.getElementById('next');
-
-    let currentIndex = 0;
-
-    function showLightbox(index) {
-      currentIndex = index;
-      lightboxImg.src = galleryImages[index].src;
-      lightbox.style.display = 'flex';
-    }
-
-    function showNext(step) {
-      currentIndex = (currentIndex + step + galleryImages.length) % galleryImages.length;
-      lightboxImg.src = galleryImages[currentIndex].src;
-    }
-
-    galleryImages.forEach((img, index) => {
-      img.addEventListener('click', () => showLightbox(index));
-    });
-
-    closeBtn.addEventListener('click', () => lightbox.style.display = 'none');
-    prevBtn.addEventListener('click', () => showNext(-1));
-    nextBtn.addEventListener('click', () => showNext(1));
-
-    window.addEventListener('keydown', (e) => {
-      if (lightbox.style.display === 'flex') {
-        if (e.key === 'ArrowLeft') showNext(-1);
-        if (e.key === 'ArrowRight') showNext(1);
-        if (e.key === 'Escape') lightbox.style.display = 'none';
-      }
-    });
-    */
   </script>
 </body>
 </html>
