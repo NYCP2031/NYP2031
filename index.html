@@ -63,6 +63,7 @@
     }
 
     /* ===== Masonry Gallery (Always 3 columns) ===== */
+    /*
     .gallery {
       column-count: 3;
       column-gap: 10px;
@@ -71,7 +72,6 @@
       padding: 0 10px 40px;
     }
 
-    /* Keep 3 columns even on mobile */
     @media (max-width: 600px) {
       .gallery {
         column-count: 3;
@@ -94,7 +94,6 @@
       box-shadow: 0 8px 20px rgba(0,0,0,0.15);
     }
 
-    /* ===== Lightbox ===== */
     .lightbox {
       display: none;
       position: fixed;
@@ -130,6 +129,7 @@
 
     .prev { left: 5%; }
     .next { right: 5%; }
+    */
   </style>
 </head>
 
@@ -143,7 +143,7 @@
         <option value="es">ES</option>
       </select>
     </div>
-    <h1 id="title">New York City For Palma 2031</h1>
+    <h1 id="title">New York City / Jersey City For Palma 2031</h1>
   </header>
 
   <!-- ===== DESCRIPTION ===== -->
@@ -151,7 +151,14 @@
     We’ve had the chance to experience Palma and its incredible spirit firsthand. The energy, creativity, and warmth of the people here truly stand out. As New Yorkers, we’re proud to support the Palma 2031 efforts and everything this city is building toward — a future full of culture, connection, and possibility.
   </div>
 
+  <!-- ===== VIDEO SECTION ===== -->
+  <video controls loop id="bg-video">
+    <source src="images/palma2031vid.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+
   <!-- ===== GALLERY ===== -->
+  <!--
   <div class="gallery" id="gallery">
     <img src="images/image1.jpg" alt="Placeholder 1">
     <img src="images/image2.jpg" alt="Placeholder 2">
@@ -178,14 +185,17 @@
     <img src="images/image23.jpg" alt="Placeholder 23">
     <img src="images/image24.jpg" alt="Placeholder 24">
   </div>
+  -->
 
   <!-- ===== LIGHTBOX VIEWER ===== -->
+  <!--
   <div class="lightbox" id="lightbox">
     <span class="close" id="close">&times;</span>
     <span class="prev" id="prev">&#10094;</span>
     <img id="lightbox-img" src="">
     <span class="next" id="next">&#10095;</span>
   </div>
+  -->
 
   <!-- ===== JS ===== -->
   <script>
@@ -215,6 +225,7 @@
       description.textContent = texts[lang].desc;
     });
 
+    /*
     // === Lightbox / gallery ===
     const galleryImages = document.querySelectorAll('.gallery img');
     const lightbox = document.getElementById('lightbox');
@@ -236,7 +247,6 @@
       lightboxImg.src = galleryImages[currentIndex].src;
     }
 
-
     galleryImages.forEach((img, index) => {
       img.addEventListener('click', () => showLightbox(index));
     });
@@ -252,6 +262,7 @@
         if (e.key === 'Escape') lightbox.style.display = 'none';
       }
     });
+    */
   </script>
 </body>
 </html>
